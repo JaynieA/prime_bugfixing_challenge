@@ -10,11 +10,16 @@
     <img src="images/MEANie.JPG" width="800" height="400" />
     <h1>MEANie</h1>
     <p>A simple, ugly MEAN stack example. Console has output from GET call.</p>
-    <div ng-controller="whereMyPeeps">
-      <input type="text" value="" ng-model="nameIn" placeholder="Name">
-      <input type="text" value="" ng-model="locationIn" placeholder="Location">
-      <button ng-click="addRecord()">Add</button>
-      <button ng-click="getRecords()">Read</button>
+    <div ng-controller="whereMyPeeps" ng-init="getRecords()">
+      <div>
+        <input type="text" value="" ng-model="nameIn" placeholder="Name">
+        <input type="text" value="" ng-model="locationIn" placeholder="Location">
+        <button ng-click="addRecord()">Add</button>
+      </div>
+      <div ng-repeat="records in allTheRecords" style="width:20%; display:inline-block;">
+        <p><strong>Name: </strong>{{records.name}}</p>
+        <p><strong>Location: </strong>{{records.location}}</p>
+      </div>
     </div>
   </body>
 </html>
