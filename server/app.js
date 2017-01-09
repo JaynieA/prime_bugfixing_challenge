@@ -14,19 +14,19 @@ mongoose.connect( 'localhost:/27017/test' );
 var ourSchema = new  mongoose.Schema({
   name: String,
   location: String
-});
+}); // end ourSchema
 
 var ourModel = mongoose.model( 'ourModel', ourSchema );
 
 //index router
 app.get( '/', function( req, res ){
   res.sendFile( path.resolve( 'public/index.html' ) );
-});
+}); // end get
 
 //spin up server
 app.listen( 8080, 'localhost', function( req, res ){
   console.log( 'listening on 8080' );
-});
+}); // end listen
 
 //routes
 app.get( '/getRecords', function( req, res ){
@@ -34,8 +34,8 @@ app.get( '/getRecords', function( req, res ){
   ourModel.find()
   .then( function( data ){
     res.send( data );
-  });
-});
+  }); // end find
+}); // end get
 
 app.post( '/testPost', function( req, res ){
   console.log( 'req.body.name: ' + req.body.name );
@@ -44,8 +44,9 @@ app.post( '/testPost', function( req, res ){
   var recordToAdd = {
     name: req.body.name,
     location: req.body.location
-  };
+  }; // end recordToAdd
   // create new record
-  var newRecord=ourModel( recordToAdd );
+  var newRecord = ourModel( recordToAdd );
   newRecord.save();
-});
+  res.sendStatus(201);
+}); // end post
