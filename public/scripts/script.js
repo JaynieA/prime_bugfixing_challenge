@@ -10,7 +10,6 @@ myApp.controller( 'whereMyPeeps', [ '$scope', '$http', function( $scope, $http )
       name: $scope.nameIn,
       location: $scope.locationIn
     }; // end objectToSend
-    console.log(objectToSend);
     //post record to the database
     $http({
       method: 'POST',
@@ -22,6 +21,16 @@ myApp.controller( 'whereMyPeeps', [ '$scope', '$http', function( $scope, $http )
       $scope.getRecords();
     }); // end $http
   }; // end addRecord
+
+  $scope.deleteRecord = function(id) {
+    //send delete request to server
+    $http({
+      method: 'DELETE',
+      url: '/delete/' + id
+    }).then(function(response) {
+      $scope.getRecords();
+    }); // end $http
+  }; // end deleteRecord
 
   $scope.getRecords = function(){
     $http({

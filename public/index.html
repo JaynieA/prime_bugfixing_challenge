@@ -19,6 +19,7 @@
       <div ng-repeat="records in allTheRecords" style="width:20%; display:inline-block;">
         <p><strong>Name: </strong>{{records.name}}</p>
         <p><strong>Location: </strong>{{records.location}}</p>
+        <button ng-click="deleteRecord(records._id)" type="button">Delete</button>
       </div>
     </div>
   </body>

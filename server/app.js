@@ -50,3 +50,16 @@ app.post( '/testPost', function( req, res ){
   newRecord.save();
   res.sendStatus(201);
 }); // end post
+
+app.delete('/delete/:id?', function(req,res) {
+  console.log('delete route hit', req.params.id);
+  ourModel.remove({ _id: req.params.id}, function(err) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      res.sendStatus(204);
+    } // end else
+  }); // end if
+
+}); // end delete
